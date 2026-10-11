@@ -12,6 +12,8 @@ import { mountPosition } from '../src/views/position';
 import { mountTx } from '../src/views/tx';
 import { mountWallet } from '../src/views/wallet';
 
+if (new URLSearchParams(location.search).get('embed') === '1') document.documentElement.classList.add('embed');
+
 const view = document.getElementById('view') as HTMLElement;
 const form = document.getElementById('search') as HTMLFormElement;
 const input = document.getElementById('q') as HTMLInputElement;

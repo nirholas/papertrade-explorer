@@ -5,13 +5,35 @@
 [![HyperEVM](https://img.shields.io/badge/HyperEVM-chain_999-0a8f5b?style=flat-square)](https://papertrade.xyz)
 [![GitHub stars](https://img.shields.io/github/stars/nirholas/papertrade-explorer?style=flat-square&color=0a8f5b)](https://github.com/nirholas/papertrade-explorer/stargazers)
 [![Last commit](https://img.shields.io/github/last-commit/nirholas/papertrade-explorer?style=flat-square&color=0a8f5b)](https://github.com/nirholas/papertrade-explorer/commits/main)
+[![MCP](https://img.shields.io/badge/MCP-streamable_http-4338ca?style=flat-square)](https://papertrade-explorer.pages.dev/docs/mcp/)
+[![Docs](https://img.shields.io/badge/docs-papertrade--explorer.pages.dev-0a8f5b?style=flat-square)](https://papertrade-explorer.pages.dev/docs/)
 [![Unofficial](https://img.shields.io/badge/community-unofficial-lightgrey?style=flat-square)](#the-papertrade-toolkit)
 
-[Live site](https://papertrade-explorer.pages.dev) · [Issues](https://github.com/nirholas/papertrade-explorer/issues) · [Discussions](https://github.com/nirholas/papertrade-explorer/discussions) · [Papertrade](https://papertrade.xyz) · [Toolkit](#the-papertrade-toolkit)
+[Live site](https://papertrade-explorer.pages.dev) · [Docs](https://papertrade-explorer.pages.dev/docs/) · [MCP](https://papertrade-explorer.pages.dev/docs/mcp/) · [Issues](https://github.com/nirholas/papertrade-explorer/issues) · [Discussions](https://github.com/nirholas/papertrade-explorer/discussions) · [Papertrade](https://papertrade.xyz) · [Toolkit](#the-papertrade-toolkit)
 
 Unofficial, not affiliated with Papertrade. High leverage can lose your whole margin.
 
 A block-explorer-style site for [Papertrade](https://papertrade.xyz), the fully on-chain 1000x synthetic perps exchange on HyperEVM (chain 999). Paste a wallet, an intent id or a transaction hash and see what happened, live. Read-only: nothing here signs or sends a transaction.
+
+## Use it from your AI
+
+A read-only MCP server runs at `https://papertrade-explorer.pages.dev/mcp` (Streamable HTTP, stateless, no key). Nine tools: `search`, `get_wallet`, `get_positions`, `get_intents`, `lookup_intent`, `decode_transaction`, `get_leaderboard`, `get_trade_history`, `get_protocol_overview`. None of them signs, sends or places anything.
+
+```bash
+claude mcp add --transport http papertrade-explorer https://papertrade-explorer.pages.dev/mcp
+```
+
+Setup for Claude Desktop and claude.ai, Claude API, Codex, ChatGPT, Gemini CLI, Cursor, VS Code, Windsurf, Zed, Cline, Goose, Continue and OpenAPI frameworks is in [Connect your AI](https://papertrade-explorer.pages.dev/docs/connect-your-ai/). Every tool is also a plain HTTP call: `POST /api/tools/{name}`, described by [`/openapi.json`](https://papertrade-explorer.pages.dev/openapi.json).
+
+Discovery files: [`/.well-known/mcp/server-card.json`](https://papertrade-explorer.pages.dev/.well-known/mcp/server-card.json), [`/.well-known/agent-card.json`](https://papertrade-explorer.pages.dev/.well-known/agent-card.json), [`/.well-known/api-catalog`](https://papertrade-explorer.pages.dev/.well-known/api-catalog), [`/llms.txt`](https://papertrade-explorer.pages.dev/llms.txt), [`/llms-full.txt`](https://papertrade-explorer.pages.dev/llms-full.txt). Registry metadata is in `server.json`.
+
+## Docs
+
+Full documentation lives at [papertrade-explorer.pages.dev/docs](https://papertrade-explorer.pages.dev/docs/), with raw markdown in [`docs/`](docs). Add `.md` to any docs URL for the markdown twin.
+
+## Embed and Papertrade OS
+
+Add `?embed=1` for a product-only view. The main page may be framed by `papertrade-os.pages.dev` and other `*.pages.dev` hosts: [Open in Papertrade OS](https://papertrade-os.pages.dev/?open=explorer).
 
 ## Why
 
@@ -47,11 +69,13 @@ Open http://localhost:8792. The SDK is installed from the sibling tarball (`file
 - `site/functions/api/papertrade/[[path]].ts` is the same-origin proxy (Papertrade sends no CORS headers).
 - `site/functions/api/rpc.ts` is an allowlisted JSON-RPC proxy for HyperEVM with rate-limit retry.
 - `site/functions/w/[addr].ts` is the OG preview function.
-- A strict CSP is set in `site/public/_headers`.
+- `site/functions/mcp.ts` is the MCP server and `site/functions/api/tools/[name].ts` its REST mirror. Shared plumbing is in `site/functions/_lib/` and the tool list in `_lib/manifest.ts`, which also generates the discovery files and docs.
+- `scripts/build-discovery.mjs` and `scripts/build-docs.mjs` run in `build:site`.
+- A strict CSP is set in `site/public/_headers`. Only `/` may be framed, and only by `papertrade-os.pages.dev` and other `*.pages.dev` hosts.
 
 ## Environment variables
 
-None. No secrets and no paid APIs are used. If you add one, put it in `.dev.vars` and document it here.
+Optional `PAPERTRADE_API_URL` (defaults to `https://exchange.papertrade.xyz`). No secrets and no paid APIs are used. If you add one, put it in `.dev.vars` and document it here.
 
 ## Scripts
 
@@ -67,6 +91,7 @@ npm run build:site && cd site && npx wrangler pages deploy
 
 - There is no global position-id lookup. `#/position/<id>` searches the live feed, otherwise it asks for the owner wallet (`#/position/<wallet>/<id>`).
 - The live feed does not currently include intent ids, so the intent page falls back to wallet state and an on-chain scan.
+- `lookup_intent` scans about the last 6000 blocks. Older intents are found through `get_trade_history`.
 - HyperEVM RPC caps getLogs at 1000 blocks and 1 MiB, and rate limits come back as HTTP 200 with code -32005. The proxy retries.
 
 ## The Papertrade toolkit

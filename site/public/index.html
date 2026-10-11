@@ -4,12 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Papertrade Explorer (unofficial)</title>
-<meta name="description" content="Unofficial block explorer for Papertrade, the 1000x synthetic perps exchange on HyperEVM. Look up any wallet, position, intent or transaction, live PnL, bust prices and the leaderboard.">
+<meta name="description" content="Unofficial block explorer for Papertrade, the 1000x synthetic perps exchange on HyperEVM. Look up any wallet, position, intent or transaction, live PnL, bust prices and the leaderboard. Includes a read-only MCP server for Claude, ChatGPT, Codex, Gemini and Cursor.">
 <meta name="color-scheme" content="light dark">
 <meta name="theme-color" content="#f4efe4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
 <link rel="canonical" href="https://papertrade-explorer.pages.dev/">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="service-desc" href="/openapi.json" type="application/json">
+<link rel="api-catalog" href="/.well-known/api-catalog" type="application/linkset+json">
+<link rel="mcp" href="/mcp">
+<link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Papertrade Explorer (unofficial)">
 <meta property="og:title" content="Papertrade Explorer (unofficial)">
@@ -38,6 +42,8 @@
     </a>
     <nav class="nav" aria-label="Primary">
       <a href="#/leaderboard" data-nav="leaderboard">Leaderboard</a>
+      <a href="/docs/">Docs</a>
+      <a href="/docs/mcp/">MCP</a>
       <a href="https://hyperevmscan.io" target="_blank" rel="noopener noreferrer">HyperEVMScan</a>
     </nav>
     <form class="search" id="search" role="search" autocomplete="off">
@@ -60,7 +66,10 @@
     <a href="https://papertrade-terminal.pages.dev" target="_blank" rel="noopener noreferrer">Terminal</a>
     <a href="https://papertrade-analytics.pages.dev" target="_blank" rel="noopener noreferrer">Analytics</a>
     <a href="https://papertrade-liquidations.pages.dev" target="_blank" rel="noopener noreferrer">Liquidations</a>
+    <a href="/docs/">Docs</a>
+    <a href="/docs/mcp/">MCP</a>
     <a href="/llms.txt">llms.txt</a>
+    <a href="https://papertrade-os.pages.dev/?open=explorer" target="_blank" rel="noopener noreferrer">Open in Papertrade OS</a>
   </p>
 </footer>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
