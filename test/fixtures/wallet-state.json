@@ -1,0 +1,141 @@
+{
+ "address": "0xe5deb4213bce57d95792ee6051c44bb72203fa0d",
+ "accountRevision": 1,
+ "indexedThroughBlock": 48225683,
+ "walletRevision": 48225683,
+ "indexedThroughTimestamp": 1791691771,
+ "sessionKeys": {
+  "0x23754cb0493665f6d142f3e5d364248203d9631f": {
+   "__bigint": "1794250164"
+  }
+ },
+ "queueRevision": {
+  "__bigint": "20"
+ },
+ "balance": {
+  "__bigint": "40359130977573890174"
+ },
+ "queued": {
+  "__bigint": "0"
+ },
+ "locked": {
+  "__bigint": "49000000000000000000"
+ },
+ "funds": {
+  "reservedBalance": {
+   "__bigint": "0"
+  },
+  "reservedQueued": {
+   "__bigint": "0"
+  },
+  "availableBalance": {
+   "__bigint": "40359130977573890174"
+  },
+  "availableQueued": {
+   "__bigint": "0"
+  }
+ },
+ "queueNodeCount": 0,
+ "consumableDebt": {
+  "__bigint": "0"
+ },
+ "paper": {
+  "balance": {
+   "__bigint": "0"
+  },
+  "staked": {
+   "__bigint": "1194740002195601095850"
+  },
+  "pendingBase": {
+   "__bigint": "0"
+  },
+  "rewardDebt": {
+   "__bigint": "11122862564656019457"
+  }
+ },
+ "lifetime": {
+  "depositedRaw": {
+   "__bigint": "112586401000000000000"
+  },
+  "withdrawnRaw": {
+   "__bigint": "0"
+  },
+  "realizedPnlRaw": {
+   "__bigint": "-23227270022426109826"
+  },
+  "feesPaidRaw": {
+   "__bigint": "138218979134161023"
+  },
+  "tradedNotionalRaw": {
+   "__bigint": "99000000000000000000000"
+  },
+  "paperRewardsClaimedRaw": {
+   "__bigint": "0"
+  }
+ },
+ "positions": [
+  {
+   "positionId": {
+    "__bigint": "114751"
+   },
+   "instrumentId": 1,
+   "isLong": true,
+   "useDebt": false,
+   "entryPriceRaw": {
+    "__bigint": "249905"
+   },
+   "marginRaw": {
+    "__bigint": "10000000000000000000"
+   },
+   "leverage": 1000,
+   "bustPriceRaw": {
+    "__bigint": "249776"
+   },
+   "openedAtMs": 1791691771000,
+   "intentId": "0xe0a0198733992208f8d54dfef25cae7df7572457e87afd2ec87d0f5bc47aaddc"
+  },
+  {
+   "positionId": {
+    "__bigint": "114222"
+   },
+   "instrumentId": 0,
+   "isLong": true,
+   "useDebt": false,
+   "entryPriceRaw": {
+    "__bigint": "828265"
+   },
+   "marginRaw": {
+    "__bigint": "29000000000000000000"
+   },
+   "leverage": 1000,
+   "bustPriceRaw": {
+    "__bigint": "827830"
+   },
+   "openedAtMs": 1791691520000,
+   "intentId": "0x9eed12cdde419778ea3bf996b945a761f1e61b9a5f499fbd1306e92ddeb6f31d"
+  },
+  {
+   "positionId": {
+    "__bigint": "114083"
+   },
+   "instrumentId": 0,
+   "isLong": true,
+   "useDebt": false,
+   "entryPriceRaw": {
+    "__bigint": "828165"
+   },
+   "marginRaw": {
+    "__bigint": "10000000000000000000"
+   },
+   "leverage": 1000,
+   "bustPriceRaw": {
+    "__bigint": "827730"
+   },
+   "openedAtMs": 1791691445000,
+   "intentId": "0x0e554b01e29115b778a4cba197e8da6942bedb2425e0c3ce2c8c3da31255c53b"
+  }
+ ],
+ "operations": [],
+ "closedPositions": [],
+ "intentOutcomes": []
+}
