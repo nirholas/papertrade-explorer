@@ -23,13 +23,22 @@
     "explorer",
     "perps",
     "leaderboard",
-    "cloudflare-pages"
+    "cloudflare-pages",
+    "block-explorer",
+    "wallet-tracker",
+    "perpetuals",
+    "defi",
+    "calldata-decoder",
+    "typescript",
+    "crypto",
+    "web3",
+    "on-chain-analytics"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nirholas/papertrade-explorer.git"
   },
-  "homepage": "https://github.com/nirholas/papertrade-explorer#readme",
+  "homepage": "https://papertrade-explorer.pages.dev",
   "bugs": {
     "url": "https://github.com/nirholas/papertrade-explorer/issues"
   },

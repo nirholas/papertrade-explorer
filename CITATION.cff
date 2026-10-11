@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: If you use this software, please cite it as below.
+title: "papertrade-explorer"
+abstract: "Block-explorer-style site for Papertrade wallets, positions, intents and leaderboards on HyperEVM, with transaction calldata decoding and shareable link previews."
+license: Apache-2.0
+repository-code: "https://github.com/nirholas/papertrade-explorer"
+url: "https://papertrade-explorer.pages.dev"
+keywords: [papertrade, hyperliquid, hyperevm, perps, defi]
+authors:
+  - name: three.ws
+    website: "https://three.ws"
