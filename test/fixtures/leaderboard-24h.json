@@ -1,0 +1,92 @@
+{
+ "ok": true,
+ "count": 13489,
+ "summary": {
+  "uniqueAccounts": 13489,
+  "trackedBalance": "68102848711763117661051363",
+  "trackedQueued": "0",
+  "trackedOpenNotional": "7792223835090460584366251829",
+  "trackedPaper": "4639948597115155550352044353"
+ },
+ "accounts": [
+  {
+   "address": "0x6e5f18eb8af17565e82481910264b8513361321a",
+   "leaderboardName": null,
+   "realizedPnl": "100924476928272907562255",
+   "totalWindowedPnl": "100924476928272907562255",
+   "totalVolume": "400000000000000000000000000",
+   "lastActiveTs": 1791655740,
+   "currentBalance": "4078649908518946945770",
+   "currentQueued": "0",
+   "currentOpenPositionCount": 0,
+   "currentOpenNotional": "0",
+   "currentUnrealizedPnl": "0",
+   "paperTotal": "4234963685772177406726095",
+   "_leaderboardRank": 1
+  },
+  {
+   "address": "0x67891c4b5d4474ffcab2e09b8dfa3d4c4236828c",
+   "leaderboardName": "rvw",
+   "realizedPnl": "87135642711325096929132",
+   "totalWindowedPnl": "87135642711325096929132",
+   "totalVolume": "1046366940000000000000000000",
+   "lastActiveTs": 1791661380,
+   "currentBalance": "8000750322378486303179",
+   "currentQueued": "0",
+   "currentOpenPositionCount": 0,
+   "currentOpenNotional": "0",
+   "currentUnrealizedPnl": "0",
+   "paperTotal": "924974894897801827254285",
+   "_leaderboardRank": 2
+  },
+  {
+   "address": "0x6b8c262ca939adbe3793d3eca519a9d64f74d184",
+   "leaderboardName": "crpaper",
+   "realizedPnl": "74607806693036445190874",
+   "totalWindowedPnl": "74849419388832638585562",
+   "totalVolume": "91500000000000000000000000",
+   "lastActiveTs": 1791646813,
+   "currentBalance": "386407529873036445190874",
+   "currentQueued": "0",
+   "currentOpenPositionCount": 4,
+   "currentOpenNotional": "1500000000000000000000000",
+   "currentUnrealizedPnl": "241612695796193394688",
+   "paperTotal": "4047241909121350102600300",
+   "_leaderboardRank": 3
+  },
+  {
+   "address": "0x013c4d6f76fe6e04ed0b95d590d15ee3033cd274",
+   "leaderboardName": null,
+   "realizedPnl": "0",
+   "totalWindowedPnl": "65181486917326460682240",
+   "totalVolume": "20000000000000000000000000",
+   "lastActiveTs": 1791642184,
+   "currentBalance": "23938888258000000000000",
+   "currentQueued": "0",
+   "currentOpenPositionCount": 2,
+   "currentOpenNotional": "20000000000000000000000000",
+   "currentUnrealizedPnl": "65181486917326460682240",
+   "paperTotal": "0",
+   "_leaderboardRank": 4
+  },
+  {
+   "address": "0xeedab5144b1149589739db2f7ea6fba8bb71bda1",
+   "leaderboardName": null,
+   "realizedPnl": "58980461716195122219848",
+   "totalWindowedPnl": "59416945609202641341256",
+   "totalVolume": "37338310000000000000000000",
+   "lastActiveTs": 1791663601,
+   "currentBalance": "9800000195122219848",
+   "currentQueued": "0",
+   "currentOpenPositionCount": 2,
+   "currentOpenNotional": "7338310000000000000000000",
+   "currentUnrealizedPnl": "436483893007519121408",
+   "paperTotal": "743545606758859987700000",
+   "_leaderboardRank": 5
+  }
+ ],
+ "pageInfo": {
+  "page": 0,
+  "totalPages": 540
+ }
+}

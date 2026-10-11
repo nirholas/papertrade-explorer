@@ -1,0 +1,28 @@
+# Papertrade Explorer
+
+> Unofficial, not affiliated with Papertrade. High leverage can lose your whole margin. A block-explorer-style web app for Papertrade (1000x synthetic perps on HyperEVM, chain 999). Read-only: it never signs or sends anything.
+
+Site: https://papertrade-explorer.pages.dev
+Source: https://github.com/nirholas/papertrade-explorer (MIT)
+
+## Routes (hash routing, all client side)
+
+- /#/wallet/<address>: live balance, open positions with mark, unrealized PnL, bust price and distance to bust, portfolio chart (1h, 1d, 1w, all), trade history, queue balances, PAPER held/staked/pending, leaderboard rank per window, session keys.
+- /#/position/<id> or /#/position/<wallet>/<id>: one open or closed position.
+- /#/intent/<0x intent id>: intent status, resolved from the live feed, wallet state and BatchExecutor events.
+- /#/tx/<hash>: HyperEVM transaction decoded against BatchExecutor calldata, with signature verification per intent.
+- /#/leaderboard?window=24h|7d|30d|all&sort=<key>&dir=asc|desc&page=<0-based>&q=<text>: ranked wallets, 25 per page.
+- /w/<address>: server-rendered Open Graph preview for a wallet (Pages Function), humans are redirected to /#/wallet/<address>.
+
+## Data sources
+
+- Papertrade API via the same-origin proxy /api/papertrade/* (https://exchange.papertrade.xyz).
+- HyperEVM JSON-RPC via the allowlisted proxy /api/rpc.
+
+## HTTP API
+
+This repo exposes no public HTTP API. /api/papertrade/* and /api/rpc are internal proxies for the browser, so there is no /openapi.json. For programmatic access use https://github.com/nirholas/papertrade-sdk or https://github.com/nirholas/papertrade-ai.
+
+## Related
+
+papertrade-sdk, papertrade-ai, papertrade-terminal, papertrade-analytics, papertrade-liquidations (all under https://github.com/nirholas).

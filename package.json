@@ -1,0 +1,53 @@
+{
+  "name": "papertrade-explorer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Unofficial block-explorer-style site for Papertrade wallets, positions, intents and leaderboards on HyperEVM: live wallet pages, tx calldata decoding and shareable link previews.",
+  "license": "MIT",
+  "author": "nirholas",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "typecheck": "tsc --noEmit && tsc --noEmit -p site/functions",
+    "test": "vitest run",
+    "build:site": "esbuild site/app.ts --bundle --format=esm --minify --target=es2022 --sourcemap --outfile=site/public/app.js",
+    "dev:site": "npm run build:site && cd site && wrangler pages dev --port 8792",
+    "deploy:site": "npm run build:site && cd site && wrangler pages deploy"
+  },
+  "keywords": [
+    "papertrade",
+    "hyperliquid",
+    "hyperevm",
+    "explorer",
+    "perps",
+    "leaderboard",
+    "cloudflare-pages"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nirholas/papertrade-explorer.git"
+  },
+  "homepage": "https://github.com/nirholas/papertrade-explorer#readme",
+  "bugs": {
+    "url": "https://github.com/nirholas/papertrade-explorer/issues"
+  },
+  "dependencies": {
+    "lightweight-charts": "^5.2.1",
+    "papertrade-sdk": "file:../papertrade-sdk-0.1.0.tgz",
+    "viem": "^2.57.4"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20261010.1",
+    "@types/node": "^26.6.5",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3",
+    "wrangler": "^4.149.0"
+  },
+  "allowScripts": {
+    "workerd@1.20261006.1": true,
+    "esbuild@0.28.2": true
+  }
+}

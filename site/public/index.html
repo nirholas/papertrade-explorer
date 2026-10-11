@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Papertrade Explorer (unofficial)</title>
+<meta name="description" content="Unofficial block explorer for Papertrade, the 1000x synthetic perps exchange on HyperEVM. Look up any wallet, position, intent or transaction, live PnL, bust prices and the leaderboard.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f4efe4" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#16151a" media="(prefers-color-scheme: dark)">
+<link rel="canonical" href="https://papertrade-explorer.pages.dev/">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Papertrade Explorer (unofficial)">
+<meta property="og:title" content="Papertrade Explorer (unofficial)">
+<meta property="og:description" content="Look up any Papertrade wallet, position, intent or HyperEVM transaction. Live PnL, bust prices and the leaderboard.">
+<meta property="og:url" content="https://papertrade-explorer.pages.dev/">
+<meta property="og:image" content="https://papertrade-explorer.pages.dev/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Papertrade Explorer (unofficial)">
+<meta name="twitter:description" content="Look up any Papertrade wallet, position, intent or HyperEVM transaction.">
+<meta name="twitter:image" content="https://papertrade-explorer.pages.dev/og.png">
+<link rel="stylesheet" href="/styles.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"Papertrade Explorer","alternateName":"papertrade-explorer","url":"https://papertrade-explorer.pages.dev/","description":"Unofficial block explorer for Papertrade wallets, positions, intents and the leaderboard on HyperEVM.","applicationCategory":"FinanceApplication","operatingSystem":"Any","license":"https://opensource.org/licenses/MIT","isAccessibleForFree":true,"author":{"@type":"Person","name":"nirholas","url":"https://github.com/nirholas"},"codeRepository":"https://github.com/nirholas/papertrade-explorer","potentialAction":{"@type":"SearchAction","target":"https://papertrade-explorer.pages.dev/#/wallet/{address}","query-input":"required name=address"}}
+</script>
+</head>
+<body>
+<a class="skip" href="#view">Skip to content</a>
+<div class="disclaimer" role="note">Unofficial, not affiliated with Papertrade. High leverage can lose your whole margin.</div>
+<header class="top">
+  <div class="top-inner">
+    <a class="brand" href="#/" aria-label="Papertrade Explorer home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><path d="M6 3h14l6 6v20H6z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M20 3v6h6M10 16h12M10 21h12M10 26h7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      <span class="brand-text">Papertrade <b>Explorer</b></span>
+    </a>
+    <nav class="nav" aria-label="Primary">
+      <a href="#/leaderboard" data-nav="leaderboard">Leaderboard</a>
+      <a href="https://hyperevmscan.io" target="_blank" rel="noopener noreferrer">HyperEVMScan</a>
+    </nav>
+    <form class="search" id="search" role="search" autocomplete="off">
+      <label class="sr" for="q">Search by wallet address, intent id, transaction hash, position id or leaderboard name</label>
+      <input id="q" name="q" type="text" inputmode="search" spellcheck="false" autocapitalize="off" placeholder="Wallet, tx hash, intent id, position #" aria-describedby="q-hint" aria-controls="recent" aria-expanded="false">
+      <kbd class="slash" aria-hidden="true">/</kbd>
+      <button type="submit">Search</button>
+      <div class="recent" id="recent" role="listbox" aria-label="Recent searches" hidden></div>
+      <span class="sr" id="q-hint">Press slash anywhere to focus search. Press Enter to open.</span>
+    </form>
+  </div>
+</header>
+<main id="view" tabindex="-1" aria-live="polite"></main>
+<footer class="foot">
+  <p><strong>Unofficial, not affiliated with Papertrade.</strong> High leverage can lose your whole margin. Data comes live from the public Papertrade API and HyperEVM. Nothing here is financial advice.</p>
+  <p class="foot-links">
+    <a href="https://github.com/nirholas/papertrade-explorer" target="_blank" rel="noopener noreferrer">Source (MIT)</a>
+    <a href="https://github.com/nirholas/papertrade-sdk" target="_blank" rel="noopener noreferrer">papertrade-sdk</a>
+    <a href="https://github.com/nirholas/papertrade-ai" target="_blank" rel="noopener noreferrer">papertrade-ai</a>
+    <a href="https://papertrade-terminal.pages.dev" target="_blank" rel="noopener noreferrer">Terminal</a>
+    <a href="https://papertrade-analytics.pages.dev" target="_blank" rel="noopener noreferrer">Analytics</a>
+    <a href="https://papertrade-liquidations.pages.dev" target="_blank" rel="noopener noreferrer">Liquidations</a>
+    <a href="/llms.txt">llms.txt</a>
+  </p>
+</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<noscript><p class="noscript">This explorer needs JavaScript to read live data.</p></noscript>
+<script type="module" src="/app.js"></script>
+</body>
+</html>
