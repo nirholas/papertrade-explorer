@@ -1,0 +1,18 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.nirholas/papertrade-explorer",
+  "title": "Papertrade Explorer (unofficial)",
+  "description": "Read-only explorer for Papertrade (1000x perps on HyperEVM): wallets, live positions, intents, decoded transactions, leaderboard.",
+  "version": "0.2.0",
+  "websiteUrl": "https://papertrade-explorer.pages.dev/docs/",
+  "repository": {
+    "url": "https://github.com/nirholas/papertrade-explorer",
+    "source": "github"
+  },
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://papertrade-explorer.pages.dev/mcp"
+    }
+  ]
+}

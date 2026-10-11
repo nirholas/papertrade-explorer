@@ -5,3 +5,4 @@ dist
 .dev.vars
 .wrangler
 site/public/app.js*
+site/public/docs/

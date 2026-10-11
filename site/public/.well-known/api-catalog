@@ -1,0 +1,51 @@
+{
+  "linkset": [
+    {
+      "anchor": "https://papertrade-explorer.pages.dev/api/tools",
+      "service-desc": [
+        {
+          "href": "https://papertrade-explorer.pages.dev/openapi.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://papertrade-explorer.pages.dev/docs/reference/",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://papertrade-explorer.pages.dev/mcp",
+      "service-desc": [
+        {
+          "href": "https://papertrade-explorer.pages.dev/.well-known/mcp/server-card.json",
+          "type": "application/json"
+        }
+      ],
+      "service-doc": [
+        {
+          "href": "https://papertrade-explorer.pages.dev/docs/mcp/",
+          "type": "text/html"
+        }
+      ]
+    },
+    {
+      "anchor": "https://papertrade-explorer.pages.dev/",
+      "describedby": [
+        {
+          "href": "https://papertrade-explorer.pages.dev/llms.txt",
+          "type": "text/plain"
+        },
+        {
+          "href": "https://papertrade-explorer.pages.dev/llms-full.txt",
+          "type": "text/plain"
+        },
+        {
+          "href": "https://papertrade-explorer.pages.dev/docs/",
+          "type": "text/html"
+        }
+      ]
+    }
+  ]
+}

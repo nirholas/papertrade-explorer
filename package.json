@@ -1,8 +1,8 @@
 {
   "name": "papertrade-explorer",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Unofficial block-explorer-style site for Papertrade wallets, positions, intents and leaderboards on HyperEVM: live wallet pages, tx calldata decoding and shareable link previews.",
+  "description": "Unofficial block explorer and read-only MCP server for Papertrade (1000x synthetic perps on HyperEVM): wallets, positions valued live, intents, decoded transactions and the leaderboard.",
   "license": "Apache-2.0",
   "author": "nirholas",
   "type": "module",
@@ -12,9 +12,10 @@
   "scripts": {
     "typecheck": "tsc --noEmit && tsc --noEmit -p site/functions",
     "test": "vitest run",
-    "build:site": "esbuild site/app.ts --bundle --format=esm --minify --target=es2022 --sourcemap --outfile=site/public/app.js",
+    "build:site": "npm run build:app && node scripts/build-discovery.mjs && node scripts/build-docs.mjs",
     "dev:site": "npm run build:site && cd site && wrangler pages dev --port 8792",
-    "deploy:site": "npm run build:site && cd site && wrangler pages deploy"
+    "deploy:site": "npm run build:site && cd site && wrangler pages deploy",
+    "build:app": "esbuild site/app.ts --bundle --format=esm --minify --target=es2022 --sourcemap --outfile=site/public/app.js"
   },
   "keywords": [
     "papertrade",
@@ -32,7 +33,19 @@
     "typescript",
     "crypto",
     "web3",
-    "on-chain-analytics"
+    "on-chain-analytics",
+    "mcp",
+    "model-context-protocol",
+    "mcp-server",
+    "ai-agents",
+    "llms-txt",
+    "a2a",
+    "agent-card",
+    "claude",
+    "chatgpt",
+    "codex",
+    "gemini",
+    "cursor"
   ],
   "repository": {
     "type": "git",
@@ -51,6 +64,7 @@
     "@cloudflare/workers-types": "^5.20261010.1",
     "@types/node": "^26.6.5",
     "esbuild": "^0.28.2",
+    "marked": "^18.1.0",
     "typescript": "^7.0.2",
     "vitest": "^5.0.3",
     "wrangler": "^4.149.0"
@@ -58,5 +72,6 @@
   "allowScripts": {
     "workerd@1.20261006.1": true,
     "esbuild@0.28.2": true
-  }
+  },
+  "mcpName": "io.github.nirholas/papertrade-explorer"
 }

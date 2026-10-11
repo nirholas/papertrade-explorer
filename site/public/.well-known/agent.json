@@ -1,0 +1,210 @@
+{
+  "protocolVersion": "0.3.0",
+  "name": "Papertrade Explorer (unofficial)",
+  "description": "Read-only explorer for Papertrade (1000x synthetic perps on HyperEVM). Look up wallets, positions valued at the live mark, intents, decoded settlement transactions and the leaderboard. Unofficial, not affiliated with Papertrade.",
+  "url": "https://papertrade-explorer.pages.dev/mcp",
+  "preferredTransport": "JSONRPC",
+  "version": "0.2.0",
+  "documentationUrl": "https://papertrade-explorer.pages.dev/docs/",
+  "provider": {
+    "organization": "nirholas",
+    "url": "https://github.com/nirholas"
+  },
+  "capabilities": {
+    "streaming": false,
+    "pushNotifications": false,
+    "stateTransitionHistory": false
+  },
+  "securitySchemes": {},
+  "security": [],
+  "defaultInputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "defaultOutputModes": [
+    "application/json",
+    "text/plain"
+  ],
+  "skills": [
+    {
+      "id": "search",
+      "name": "Search wallets, transactions, intents, positions and names",
+      "description": "Classify an unknown string and resolve it. A 0x address returns a wallet summary, a 0x 32-byte hash is resolved against HyperEVM to tell a settlement transaction from an intent id (and returns a decoded preview), a bare number is a position id, and anything else searches leaderboard names. The result names the follow-up tool to call.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call search with {\"query\":\"0x67891c4b5d4474ffcab2e09b8dfa3d4c4236828c\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "get_wallet",
+      "name": "Look up a wallet",
+      "description": "Balance sheet of one Papertrade wallet: balance, queued funds, locked funds, available funds, open position and pending operation counts, PAPER held and staked with pending staking rewards, lifetime deposits, withdrawals, realized PnL and fees, active session keys, and leaderboard rank and PnL per window (24h, 7d, 30d, all).",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call get_wallet with {\"address\":\"0x67891c4b5d4474ffcab2e09b8dfa3d4c4236828c\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "get_positions",
+      "name": "Open positions valued at the live mark",
+      "description": "Open positions of a wallet valued at the live Papertrade mark (the Hyperliquid BBO mid): side, leverage, margin, notional, entry, mark, bust (liquidation) price, unrealized PnL before close-side haircut, distance to bust and a risk band. Totals included. Pass position_id to fetch one position; if it is already closed the closed-trade record is returned.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call get_positions with {\"address\":\"0x67891c4b5d4474ffcab2e09b8dfa3d4c4236828c\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "get_intents",
+      "name": "Pending intents of a wallet",
+      "description": "Intents the Papertrade relayer has accepted for a wallet and not yet settled on-chain (queued opens, closes, withdrawals, stakes, claims, session keys), each with its intent id, action, acceptance time and deadline, plus the outcome of the most recent intents reported by the stream. Use lookup_intent to follow one id.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call get_intents with {\"address\":\"0x67891c4b5d4474ffcab2e09b8dfa3d4c4236828c\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "lookup_intent",
+      "name": "Follow one intent id",
+      "description": "Where a signed intent is: in the live trade feed, pending in the relayer queue (needs the wallet), or settled on HyperEVM. Scans the most recent blocks (about 6000, roughly 100 minutes) for the BatchExecutor event and, if found, returns the settling transaction, the decoded intent, signature verification and whether the call executed. Older intents are found through get_trade_history.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call lookup_intent with {\"intent_id\":\"0xa45bce0d4543bb7d21c581dfab0a42deb52fc0233e22d34f7c5c5e87250742b2\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "decode_transaction",
+      "name": "Decode a HyperEVM settlement transaction",
+      "description": "Fetch a HyperEVM transaction and decode BatchExecutor calldata into the intents it carried: action, wallet, session-key signer, decoded fields (market, side, size, leverage, position ids, amounts), intent id, whether the signature recomputes to the recorded intent id, and whether each call executed. A transaction that is not a Papertrade batch is reported as such.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call decode_transaction with {\"tx_hash\":\"0x57c85e286520d205709f1fce287fce8944322e0e43155062efeac931fcb01a1a\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "get_leaderboard",
+      "name": "Ranked wallets",
+      "description": "Ranked Papertrade wallets for a window, 25 per page, sortable, with an optional name search. Rank is the true 1-based rank. PnL and volume are USD numbers.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call get_leaderboard with {\"window\":\"24h\",\"page\":0}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "get_trade_history",
+      "name": "Closed trades of a wallet",
+      "description": "Closed and liquidated trades of a wallet, newest first, 75 per page, with net PnL (adjusted PnL minus fees paid), entry and exit, leverage, PAPER minted and the settling transaction. Use the returned next_cursor for the next page.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call get_trade_history with {\"address\":\"0x67891c4b5d4474ffcab2e09b8dfa3d4c4236828c\"}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    },
+    {
+      "id": "get_protocol_overview",
+      "name": "Protocol and market overview",
+      "description": "Market-wide state: value locked, LP, lifetime volume, open positions, PAPER supply and staked, fees, per-market live mark, open interest in USD against its cap, max leverage and whether each market is openable, whether trading is paused, and the latest trades feed.",
+      "tags": [
+        "papertrade",
+        "hyperevm",
+        "read-only",
+        "explorer"
+      ],
+      "examples": [
+        "Call get_protocol_overview with {}"
+      ],
+      "inputModes": [
+        "application/json"
+      ],
+      "outputModes": [
+        "application/json"
+      ]
+    }
+  ]
+}

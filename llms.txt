@@ -1,28 +1,49 @@
 # Papertrade Explorer
 
-> Unofficial, not affiliated with Papertrade. High leverage can lose your whole margin. A block-explorer-style web app for Papertrade (1000x synthetic perps on HyperEVM, chain 999). Read-only: it never signs or sends anything.
+> Unofficial, not affiliated with Papertrade. High leverage can lose your whole margin. Read-only: nothing here signs, sends or places anything. A block-explorer-style web app and read-only MCP server for Papertrade (1000x synthetic perps on HyperEVM, chain 999).
 
 Site: https://papertrade-explorer.pages.dev
 Source: https://github.com/nirholas/papertrade-explorer (Apache-2.0)
+MCP endpoint (Streamable HTTP, no auth): https://papertrade-explorer.pages.dev/mcp
+Open as a window in Papertrade OS: https://papertrade-os.pages.dev/?open=explorer
 
-## Routes (hash routing, all client side)
+## Tools (all read-only)
 
-- /#/wallet/<address>: live balance, open positions with mark, unrealized PnL, bust price and distance to bust, portfolio chart (1h, 1d, 1w, all), trade history, queue balances, PAPER held/staked/pending, leaderboard rank per window, session keys.
-- /#/position/<id> or /#/position/<wallet>/<id>: one open or closed position.
-- /#/intent/<0x intent id>: intent status, resolved from the live feed, wallet state and BatchExecutor events.
-- /#/tx/<hash>: HyperEVM transaction decoded against BatchExecutor calldata, with signature verification per intent.
-- /#/leaderboard?window=24h|7d|30d|all&sort=<key>&dir=asc|desc&page=<0-based>&q=<text>: ranked wallets, 25 per page.
-- /w/<address>: server-rendered Open Graph preview for a wallet (Pages Function), humans are redirected to /#/wallet/<address>.
+- search: Search wallets, transactions, intents, positions and names.
+- get_wallet: Look up a wallet.
+- get_positions: Open positions valued at the live mark.
+- get_intents: Pending intents of a wallet.
+- lookup_intent: Follow one intent id.
+- decode_transaction: Decode a HyperEVM settlement transaction.
+- get_leaderboard: Ranked wallets.
+- get_trade_history: Closed trades of a wallet.
+- get_protocol_overview: Protocol and market overview.
 
-## Data sources
+## Docs (raw markdown)
 
-- Papertrade API via the same-origin proxy /api/papertrade/* (https://exchange.papertrade.xyz).
-- HyperEVM JSON-RPC via the allowlisted proxy /api/rpc.
+- [Overview](https://papertrade-explorer.pages.dev/docs/index.md): What Papertrade Explorer is, what it can answer, and where to start.
+- [Quickstart](https://papertrade-explorer.pages.dev/docs/quickstart.md): Look up a wallet in the browser, then ask your AI assistant the same question in two minutes.
+- [Concepts](https://papertrade-explorer.pages.dev/docs/concepts.md): The Papertrade rules that change how every number in the explorer should be read.
+- [Reference](https://papertrade-explorer.pages.dev/docs/reference.md): HTTP endpoints, the REST tool mirror, the OpenAPI description and the npm scripts.
+- [MCP server](https://papertrade-explorer.pages.dev/docs/mcp.md): The read-only Model Context Protocol endpoint, its nine tools and how to call them.
+- [Connect your AI](https://papertrade-explorer.pages.dev/docs/connect-your-ai.md): Copy-paste setup for Claude, ChatGPT, Codex, Gemini, Cursor, VS Code, Windsurf, Zed, Cline, Goose, Continue and OpenAPI frameworks.
+- [Agent discovery](https://papertrade-explorer.pages.dev/docs/agent-discovery.md): The machine-readable files an agent or crawler can use to find and understand this site.
+- [Self-hosting](https://papertrade-explorer.pages.dev/docs/self-hosting.md): Run the explorer locally and deploy your own copy to Cloudflare Pages.
+- [Security and limits](https://papertrade-explorer.pages.dev/docs/security-and-limits.md): What the explorer can and cannot do, the rate limits, and how untrusted data is handled.
+- [FAQ](https://papertrade-explorer.pages.dev/docs/faq.md): Common questions about the explorer, the MCP server and Papertrade data.
+- [Changelog](https://papertrade-explorer.pages.dev/docs/changelog.md): Release history of Papertrade Explorer.
 
-## HTTP API
+## Machine-readable
 
-This repo exposes no public HTTP API. /api/papertrade/* and /api/rpc are internal proxies for the browser, so there is no /openapi.json. For programmatic access use https://github.com/nirholas/papertrade-sdk or https://github.com/nirholas/papertrade-ai.
+- [OpenAPI 3.1](https://papertrade-explorer.pages.dev/openapi.json)
+- [MCP server card](https://papertrade-explorer.pages.dev/.well-known/mcp/server-card.json)
+- [A2A agent card](https://papertrade-explorer.pages.dev/.well-known/agent-card.json)
+- [API catalog](https://papertrade-explorer.pages.dev/.well-known/api-catalog)
+- [Full docs in one file](https://papertrade-explorer.pages.dev/llms-full.txt)
 
-## Related
+## Web routes (hash routing, client side)
 
-papertrade-sdk, papertrade-ai, papertrade-terminal, papertrade-analytics, papertrade-liquidations (all under https://github.com/nirholas).
+- /#/wallet/<address>: live balance, positions, bust distance, history, PAPER, ranks, session keys.
+- /#/position/<id>, /#/intent/<id>, /#/tx/<hash>, /#/leaderboard.
+- /w/<address>: server-rendered link preview for a wallet.
+- Add ?embed=1 for a product-only view.
