@@ -68,4 +68,4 @@ npm run build:site && cd site && npx wrangler pages deploy
 
 Unofficial, not affiliated with Papertrade. Data is shown as is and is not financial advice. High leverage can lose your whole margin.
 
-MIT licensed.
+Apache-2.0 licensed.

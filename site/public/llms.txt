@@ -3,7 +3,7 @@
 > Unofficial, not affiliated with Papertrade. High leverage can lose your whole margin. A block-explorer-style web app for Papertrade (1000x synthetic perps on HyperEVM, chain 999). Read-only: it never signs or sends anything.
 
 Site: https://papertrade-explorer.pages.dev
-Source: https://github.com/nirholas/papertrade-explorer (MIT)
+Source: https://github.com/nirholas/papertrade-explorer (Apache-2.0)
 
 ## Routes (hash routing, all client side)
 
