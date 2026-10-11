@@ -284,3 +284,17 @@ describe('upstream failure', () => {
     expect(r.content[0].text.length).toBeGreaterThan(5);
   });
 });
+
+describe('fetch binding (Workers throw Illegal invocation when fetch is called as a method)', () => {
+  it('calls the platform fetch as a bare function, never as a method of the SDK client', async () => {
+    const calls: string[] = [];
+    const strictFetch = function (this: unknown, input: RequestInfo | URL): Promise<Response> {
+      if (this !== undefined && this !== globalThis) return Promise.reject(new TypeError('Illegal invocation: function called with incorrect `this` reference'));
+      return fakeApi(calls)(input);
+    } as typeof fetch;
+    const d = createDeps({}, strictFetch);
+    const out = await callTool(MCP_CONFIG, 'get_leaderboard', { window: '24h' }, d);
+    expect(out.isError).toBeFalsy();
+    expect(calls.length).toBeGreaterThan(0);
+  });
+});

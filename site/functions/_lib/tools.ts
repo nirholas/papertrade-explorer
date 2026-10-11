@@ -50,7 +50,9 @@ export interface Env {
   PAPERTRADE_API_URL?: string;
 }
 
-export function createDeps(env: Env = {}, fetchImpl: typeof fetch = fetch): Deps {
+export function createDeps(env: Env = {}, platformFetch: typeof fetch = fetch): Deps {
+  // Workers throw "Illegal invocation" when fetch runs as a method of another object (the SDK stores it on the client), so hand out a bare wrapper.
+  const fetchImpl: typeof fetch = (input, init) => platformFetch(input, init);
   const baseUrl = (env.PAPERTRADE_API_URL ?? MAINNET.apiUrl).replace(/\/+$/, '');
   const client = new PapertradeClient({ baseUrl, fetch: fetchImpl, clientBuild: 'papertrade-explorer-mcp', retries: 1, timeoutMs: 9000 });
   return {
