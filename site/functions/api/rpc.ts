@@ -6,6 +6,17 @@
 const RPCS = ['https://rpc.hyperliquid.xyz/evm', 'https://rpc.hypurrscan.io'];
 const METHODS = new Set(['eth_getTransactionByHash', 'eth_getTransactionReceipt', 'eth_getLogs', 'eth_blockNumber', 'eth_getBlockByNumber']);
 const MAX_BODY_BYTES = 4096;
+const THROTTLE_MESSAGE = /rate[\s_-]?limit|too many requests|throttl/i;
+
+/** True when the upstream body is a JSON-RPC error whose message says the caller is being throttled. Result-size errors (also -32005) are not throttling. */
+function isThrottleError(payload: string): boolean {
+  try {
+    const message = (JSON.parse(payload) as { error?: { message?: unknown } } | null)?.error?.message;
+    return typeof message === 'string' && THROTTLE_MESSAGE.test(message);
+  } catch {
+    return THROTTLE_MESSAGE.test(payload);
+  }
+}
 
 function json(status: number, body: unknown) {
   return new Response(JSON.stringify(body), { status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
@@ -32,7 +43,7 @@ export const onRequest: PagesFunction = async ({ request }) => {
       try {
         const res = await fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body });
         const payload = await res.text();
-        const limited = res.status === 429 || payload.includes('rate limited');
+        const limited = res.status === 429 || isThrottleError(payload);
         if (res.ok && !limited) return new Response(payload, { status: 200, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
         last = new Response(payload, { status: res.status, headers: { 'content-type': 'application/json', 'cache-control': 'no-store' } });
         if (limited) await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
