@@ -1,0 +1,19 @@
+{
+  "name": "papertrade-explorer",
+  "owner": {
+    "name": "nirholas"
+  },
+  "description": "Read-only Papertrade explorer MCP: wallets, live positions, intents, decoded HyperEVM transactions, leaderboard.",
+  "plugins": [
+    {
+      "name": "papertrade-explorer",
+      "source": "./",
+      "description": "Read-only Papertrade explorer MCP: wallets, live positions, intents, decoded HyperEVM transactions, leaderboard.",
+      "tags": [
+        "papertrade",
+        "explorer",
+        "mcp"
+      ]
+    }
+  ]
+}
