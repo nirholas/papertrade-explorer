@@ -6,8 +6,8 @@
     "name": "nirholas"
   },
   "repository": "https://github.com/nirholas/papertrade-explorer",
-  "license": "Apache-2.0",
   "homepage": "https://papertrade-explorer.pages.dev",
+  "license": "Apache-2.0",
   "keywords": [
     "papertrade",
     "explorer",

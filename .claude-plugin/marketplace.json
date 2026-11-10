@@ -7,8 +7,9 @@
   "plugins": [
     {
       "name": "papertrade-explorer",
-      "source": "./",
+      "source": "./plugins/papertrade-explorer",
       "description": "Read-only Papertrade explorer MCP: wallets, live positions, intents, decoded HyperEVM transactions, leaderboard.",
+      "category": "development",
       "tags": [
         "papertrade",
         "explorer",
