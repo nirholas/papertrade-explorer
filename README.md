@@ -125,3 +125,13 @@ Built by [three.ws](https://three.ws).
 Unofficial, not affiliated with Papertrade. Data is shown as is and is not financial advice. High leverage can lose your whole margin.
 
 Apache-2.0 licensed.
+
+<!-- nirholas:watermark -->
+
+---
+
+<p align="center">
+  Built by <a href="https://github.com/nirholas"><b>nirholas</b></a> · <a href="https://x.com/nichxbt">@nichxbt</a> · <a href="https://github.com/nirholas">github.com/nirholas</a>
+</p>
+
+<!-- /nirholas:watermark -->
