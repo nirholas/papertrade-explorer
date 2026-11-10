@@ -1,0 +1,18 @@
+{
+  "name": "papertrade-explorer",
+  "version": "0.2.0",
+  "description": "Read-only Papertrade explorer MCP: wallets, live positions, intents, decoded HyperEVM transactions, leaderboard.",
+  "author": {
+    "name": "nirholas"
+  },
+  "repository": "https://github.com/nirholas/papertrade-explorer",
+  "license": "Apache-2.0",
+  "homepage": "https://papertrade-explorer.pages.dev",
+  "keywords": [
+    "papertrade",
+    "explorer",
+    "hyperevm",
+    "mcp",
+    "leaderboard"
+  ]
+}
